@@ -1,5 +1,5 @@
 import React from 'react';
-// 1. Importa la imagen de fondo que colocaste en assets
+// 1. Importa la imagen de fondo
 import heroBackground from '../assets/images/interior-fabrica.png';
 
 const Hero = () => {
@@ -7,16 +7,15 @@ const Hero = () => {
     <section 
       id="hero" 
       className="relative h-screen bg-cover bg-center flex items-center justify-center text-gray-100"
-      // 2. Usa la imagen importada como fondo
       style={{ backgroundImage: `url(${heroBackground})` }}
     >
-      {/* 3. Este es el "velo" oscuro que se superpone a la imagen */}
+      {/* Velo oscuro para mejorar la legibilidad del texto */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
-      
+
       {/* El contenido se coloca en un contenedor relativo para que esté por encima del velo */}
       <div className="relative z-10 container mx-auto px-6 text-center">
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-          Soluciones Precisas en Resortes Industriales {/* Este usa text-white por defecto desde el padre */}
+          Soluciones Precisas en Resortes Industriales
         </h1>
         <p className="text-lg md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto"> {/* Cambiado a un gris más claro */}
           Fabricamos resortes a medida con más de 40 años de experiencia y calidad garantizada.

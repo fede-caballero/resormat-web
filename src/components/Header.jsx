@@ -26,7 +26,7 @@ const Header = () => {
   }, [isMenuOpen]); // Ahora se ejecuta cada vez que isMenuOpen cambia
 
   return (
-    <header 
+    <header
       className={`bg-light/95 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-lg' : 'shadow-md'}`}
     >
       <div className={`container mx-auto px-6 transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
@@ -59,28 +59,15 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 bg-black bg-opacity-50 z-[999] transition-opacity duration-300 md:hidden ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        onClick={() => setIsMenuOpen(false)}
-      >
-        <div 
-          className={`fixed top-0 right-0 h-full w-64 bg-light shadow-lg transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
-          onClick={(e) => e.stopPropagation()} // Evita que el click dentro del menú lo cierre
-        >
-          <div className="p-5 flex justify-between items-center border-b">
-            <span className="font-bold text-dark">Menú</span>
-            <button onClick={() => setIsMenuOpen(false)} className="text-dark focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-          </div>
-          <nav className="flex flex-col p-5 space-y-4">
-            <a href="#nosotros" onClick={() => setIsMenuOpen(false)} className="text-dark text-lg hover:text-primary transition-colors">Nosotros</a>
-            <a href="#productos" onClick={() => setIsMenuOpen(false)} className="text-dark text-lg hover:text-primary transition-colors">Productos</a>
-            <a href="#contacto" onClick={() => setIsMenuOpen(false)} className="text-dark text-lg hover:text-primary transition-colors">Contacto</a>
-          </nav>
-        </div>
+      {/* Mobile Dropdown Menu */}
+      <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-screen' : 'max-h-0'}`}>
+        <nav className="flex flex-col px-6 pb-4 space-y-2">
+          <a href="#nosotros" onClick={() => setIsMenuOpen(false)} className="block py-2 text-dark text-lg hover:text-primary transition-colors">Nosotros</a>
+          <a href="#productos" onClick={() => setIsMenuOpen(false)} className="block py-2 text-dark text-lg hover:text-primary transition-colors">Productos</a>
+          <a href="#contacto" onClick={() => setIsMenuOpen(false)} className="block py-2 text-dark text-lg hover:text-primary transition-colors">Contacto</a>
+        </nav>
       </div>
+
     </header>
   );
 };

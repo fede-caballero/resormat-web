@@ -18,7 +18,7 @@ const Hero = () => {
           Soluciones Precisas en Resortes Industriales
         </h1>
         <p className="text-lg md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto"> {/* Cambiado a un gris más claro */}
-          Fabricamos resortes a medida con más de 40 años de experiencia y calidad garantizada.
+          *Fabricamos resortes a medida con más de 40 años de experiencia y calidad garantizada.
         </p>
         <a 
           href="#productos" 

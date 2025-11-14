@@ -26,9 +26,30 @@ const productos = [
 
 const Productos = () => {
   return (
-    <section id="productos" className="py-20 px-6 bg-transparent">
-      <div className="container mx-auto">
-        <AnimateOnScroll className="text-center">
+    <AnimateOnScroll>
+      <section id="productos" className="py-20 px-6 bg-transparent">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-gray-100 text-center">Nuestros Productos</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {productos.map((producto, index) => (
+              <AnimateOnScroll key={index} delay={index * 150}>
+                <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg shadow-lg overflow-hidden h-full transform hover:-translate-y-2 transition-transform duration-300">
+                  <img src={producto.imagen} alt={producto.nombre} className="w-full h-48 object-cover" />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2">{producto.nombre}</h3>
+                    <p className="text-gray-300">{producto.descripcion}</p>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+    </AnimateOnScroll>
+  );
+};
+
+export default Productos;
           <h2 className="text-4xl font-bold mb-12 text-gray-100">Nuestros Productos</h2>
         </AnimateOnScroll>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

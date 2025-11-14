@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ParticleBackground from './components/ParticleBackground';
@@ -7,6 +7,8 @@ import Productos from './components/Productos';
 import ContactoFooter from './components/ContactoFooter';
 
 function App() {
+  const [activeSection, setActiveSection] = useState('');
+
   return (
     <div className="bg-transparent text-light font-sans">
       {/* El fondo de partículas se posiciona detrás de todo */}
@@ -15,17 +17,17 @@ function App() {
       </div>
 
       {/* El Header ahora es fixed para que se mantenga sobre todo el contenido */}
-      <Header />
+      <Header activeSection={activeSection} />
 
       <main>
         {/* Hero se renderiza directamente para usar el fondo de partículas */}
-        <Hero />
+        <Hero setActiveSection={setActiveSection} />
 
         {/* Este div contendrá el resto de las secciones con un fondo claro */}
         <div className="relative z-10 bg-transparent">
-          <Nosotros />
-          <Productos />
-          <ContactoFooter />
+          <Nosotros setActiveSection={setActiveSection} />
+          <Productos setActiveSection={setActiveSection} />
+          <ContactoFooter setActiveSection={setActiveSection} />
         </div>
       </main>
     </div>

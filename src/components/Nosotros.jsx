@@ -1,5 +1,5 @@
-import React from 'react';
-import AnimateOnScroll from './AnimateOnScroll';
+import React, { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 // 1. Importa Swiper y sus módulos
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,11 +18,20 @@ import fabrica4 from '../assets/images/fabrica4.png';
 
 const imagenesFabrica = [fabrica1, fabrica2, fabrica3, fabrica4];
 
-const Nosotros = () => {
+const Nosotros = ({ setActiveSection }) => {
+  const { ref, inView } = useInView({ threshold: 0.3 });
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection('nosotros');
+    }
+  }, [inView, setActiveSection]);
+
   return (
-    <AnimateOnScroll>
-      <section id="nosotros" className="py-20 px-6">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section ref={ref} id="nosotros" className="py-20 px-6">
+      <div className="container mx-auto">
+        {/* Usamos AnimateOnScroll aquí adentro para que la animación siga funcionando */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Columna de Texto */}
           <div className="text-center md:text-left">
             <h2 className="text-4xl font-bold mb-6 text-gray-100">Sobre Nosotros</h2>
@@ -51,8 +60,8 @@ const Nosotros = () => {
             </Swiper>
           </div>
         </div>
-      </section>
-    </AnimateOnScroll>
+      </div>
+    </section>
   );
 };
 

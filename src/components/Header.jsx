@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../assets/images/Logo-solo.png';
 
-const Header = () => {
+const Header = ({ activeSection }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -41,9 +41,19 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#nosotros" className="text-dark hover:text-primary transition-colors font-semibold text-lg">Nosotros</a>
-            <a href="#productos" className="text-dark hover:text-primary transition-colors font-semibold text-lg">Productos</a>
-            <a href="#contacto" className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors text-lg">
+            <a
+              href="#nosotros"
+              className={`transition-colors font-semibold text-lg ${activeSection === 'nosotros' ? 'text-primary' : 'text-dark hover:text-primary'}`}
+            >
+              Nosotros
+            </a>
+            <a
+              href="#productos"
+              className={`transition-colors font-semibold text-lg ${activeSection === 'productos' ? 'text-primary' : 'text-dark hover:text-primary'}`}
+            >
+              Productos
+            </a>
+            <a href="#contacto" className={`font-bold py-2 px-4 rounded-md transition-all text-lg ${activeSection === 'contacto' ? 'bg-blue-700 text-white ring-2 ring-white' : 'bg-primary hover:bg-blue-700 text-white'}`}>
               Contacto
             </a>
           </nav>
@@ -62,9 +72,15 @@ const Header = () => {
       {/* Mobile Dropdown Menu */}
       <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isMenuOpen ? 'max-h-screen' : 'max-h-0'}`}>
         <nav className="flex flex-col px-6 pb-4 space-y-2">
-          <a href="#nosotros" onClick={() => setIsMenuOpen(false)} className="block py-2 text-dark text-lg hover:text-primary transition-colors">Nosotros</a>
-          <a href="#productos" onClick={() => setIsMenuOpen(false)} className="block py-2 text-dark text-lg hover:text-primary transition-colors">Productos</a>
-          <a href="#contacto" onClick={() => setIsMenuOpen(false)} className="block py-2 text-dark text-lg hover:text-primary transition-colors">Contacto</a>
+          <a href="#nosotros" onClick={() => setIsMenuOpen(false)} className={`block py-2 text-lg transition-colors ${activeSection === 'nosotros' ? 'text-primary font-bold' : 'text-dark hover:text-primary'}`}>
+            Nosotros
+          </a>
+          <a href="#productos" onClick={() => setIsMenuOpen(false)} className={`block py-2 text-lg transition-colors ${activeSection === 'productos' ? 'text-primary font-bold' : 'text-dark hover:text-primary'}`}>
+            Productos
+          </a>
+          <a href="#contacto" onClick={() => setIsMenuOpen(false)} className={`block py-2 text-lg transition-colors ${activeSection === 'contacto' ? 'text-primary font-bold' : 'text-dark hover:text-primary'}`}>
+            Contacto
+          </a>
         </nav>
       </div>
 

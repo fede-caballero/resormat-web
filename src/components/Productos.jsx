@@ -1,5 +1,5 @@
-import React from 'react';
-// 1. Importa las imágenes de los productos desde la carpeta de assets
+import React, { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 import imgCompresion from '../assets/images/img_3.png';
 import AnimateOnScroll from './AnimateOnScroll';
 import imgTraccion from '../assets/images/img_4.png';
@@ -24,10 +24,19 @@ const productos = [
   }
 ];
 
-const Productos = () => {
+const Productos = ({ setActiveSection }) => {
+  const { ref, inView } = useInView({ threshold: 0.2 });
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection('productos');
+    }
+  }, [inView, setActiveSection]);
+
   return (
-    <AnimateOnScroll>
-      <section id="productos" className="py-20 px-6 bg-transparent">
+    <section ref={ref} id="productos" className="py-20 px-6 bg-transparent">
+      {/* Mantenemos AnimateOnScroll para el efecto de entrada */}
+      <AnimateOnScroll>
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-gray-100 text-center">Nuestros Productos</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -36,16 +45,16 @@ const Productos = () => {
                 <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg shadow-lg overflow-hidden h-full transform hover:-translate-y-2 transition-transform duration-300">
                   <img src={producto.imagen} alt={producto.nombre} className="w-full h-48 object-cover" />
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{producto.nombre}</h3>
-                    <p className="text-gray-300">{producto.descripcion}</p>
+                    <h3 className="text-2xl font-bold mb-2">{producto.nombre}</h3>
+                    <p className="text-lg text-gray-300">{producto.descripcion}</p>
                   </div>
                 </div>
               </AnimateOnScroll>
             ))}
           </div>
         </div>
-      </section>
-    </AnimateOnScroll>
+      </AnimateOnScroll>
+    </section>
   );
 };
 

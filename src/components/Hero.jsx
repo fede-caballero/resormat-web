@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 // 1. Importa la imagen de fondo
 import heroBackground from '../assets/images/interior-fabrica.png';
 
-const Hero = () => {
+const Hero = ({ setActiveSection }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5, // Se activa cuando el 50% de la sección es visible
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection('hero');
+    }
+  }, [inView, setActiveSection]);
+
   return (
     <section 
-      id="hero" 
+      ref={ref}
+      id="hero"
       className="relative h-screen bg-cover bg-center flex items-center justify-center text-gray-100"
       style={{ backgroundImage: `url(${heroBackground})` }}
     >

@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Definimos nuestra familia de fuentes local.
+  El navegador la conocerá como "Saira Stencil One".
+*/
+@font-face {
+  font-family: 'Saira Stencil One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/SairaStencilOne-Regular.ttf') format('truetype');
+}
+
+/*
+  Definimos la fuente Engebrechtre para el cuerpo del texto.
+*/
+@font-face {
+  font-family: 'Engebrechtre';
+  font-style: normal; /* Aunque el nombre dice 'It', la usaremos como normal */
+  font-weight: 400;
+  src: url('./assets/fonts/Engebrechtre Rg It.otf') format('opentype');
+}

@@ -38,7 +38,7 @@ const Productos = () => {
                 <img src={producto.imagen} alt={producto.nombre} className="w-full h-48 object-cover" />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{producto.nombre}</h3>
-                  <p className="text-gray-600">{producto.descripcion}</p>
+                  <p className="text-gray-300">{producto.descripcion}</p>
                 </div>
               </div>
             </AnimateOnScroll>
